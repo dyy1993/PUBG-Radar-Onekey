@@ -203,7 +203,8 @@ function processPlayer (buf, actor, repObj, waitingHandle, dataOut, iteration) {
       buf.readUInt32() // SpectatedCount
       break
     case 56:
-      buf.readObject() // Team
+      [teamGuid, teamName] = buf.readObject()// Team
+      dataOut.team = teamGuid
       break
     case 57: // begin FTakeHitInfo
       buf.readFloat() // ActualDamage

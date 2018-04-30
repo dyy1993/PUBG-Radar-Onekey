@@ -313,9 +313,9 @@ const gameState = {
             // otherwise, will have stale displaying players
             this.showingPlayers.delete(event.guid)
           }
-          // if (event.data.team){
-          //   player.team = event.data.team
-          // }
+          if (event.data.team){
+            player.team = event.data.team
+          }
           if (event.data.health) {
             player.health = event.data.health
           }

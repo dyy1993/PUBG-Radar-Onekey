@@ -337,9 +337,9 @@ const apawnStyleFunc = function (feature) {
     case 'CAR':
       const carLabel = this.get('_label') || ''
       if (carLabel == '') {
-        apawnImg = carRedSvgImg
-      } else {
         apawnImg = carSvgImg
+      } else {
+        apawnImg = carRedSvgImg
       }
       break
     default:
@@ -348,7 +348,7 @@ const apawnStyleFunc = function (feature) {
   var style = new ol.style.Style({
     image: new ol.style.Icon({
       img: apawnImg,
-      imgSize: [12, 12],
+      imgSize: [14, 14],
       scale: 1.5,
       rotation: this.get('_rotation') || 0 // 0 - 6.28
     }),
@@ -377,7 +377,7 @@ const playerStyleFunc = function (feature) {
   var iconStyle = new ol.style.Style({
     image: new ol.style.Icon({
       img: this.get('_friend') ? friendSvgImg : playerSvgImg,
-      imgSize: [13, 13],
+      imgSize: [15, 15],
       scale: 1,
       rotation: this.get('_rotation') || 0, // 0 - 6.28,
     }),
@@ -497,7 +497,7 @@ const itemStyleFunc = function (feature) {
       stroke: new ol.style.Stroke({color: 'rgba(0,0,255,0.8)', width: 1.5 })
     }),
     text: new ol.style.Text({
-      font: '10px Calibri,sans-serif',
+      font: 'bold 12px Calibri,sans-serif',
       textAlign: 'center',
       fill: new ol.style.Fill({ color: 'rgba(239,108,0,1)' }),
       text: this.get('_label') || '' ,
