@@ -26,7 +26,7 @@ vapp = new Vue({
     mapType: 'erangel',
     followMe: true,
     isDesert: false,
-    showBox: false,
+    showBox: true,
     showAirDrop: true,
     showCar: true,
 
@@ -42,15 +42,15 @@ vapp = new Vue({
 
     // --------------------------------------------------------------------------
 
-    showBack: true,
-    showArmor2: true,
-    showHead2: true,
+    showBack: false,
+    showArmor2: false,
+    showHead2: false,
     showArmor3: true,
     showHead3: true,
     showFirstAid: true,
     showMedKit: true,
-    showDrink: true,
-    showGrenade: true,
+    showDrink: false,
+    showGrenade: false,
     showSmokeBomb: false,
     showAmmo556: false,
     showAmmo762: false,
@@ -65,13 +65,13 @@ vapp = new Vue({
     showSRSuppressor: true,
     showSRExtended: false,
     showSRStock: false,
-    showM16A4: false,
+    showM16A4: true,
     showSCAR: true,
-    showAK47: false,
+    showAK47: true,
     showHK416: true,
-    showPan: true,
+    showPan: false,
     showMini14: false,
-    showSKS: false,
+    showSKS: true,
     showKar98k: true,
 
     // --------------------------------------------------------------------------
@@ -337,9 +337,9 @@ const apawnStyleFunc = function (feature) {
     case 'CAR':
       const carLabel = this.get('_label') || ''
       if (carLabel == '') {
-        apawnImg = carSvgImg
-      } else {
         apawnImg = carRedSvgImg
+      } else {
+        apawnImg = carSvgImg
       }
       break
     default:
@@ -348,12 +348,12 @@ const apawnStyleFunc = function (feature) {
   var style = new ol.style.Style({
     image: new ol.style.Icon({
       img: apawnImg,
-      imgSize: [16, 16],
+      imgSize: [12, 12],
       scale: 1.5,
       rotation: this.get('_rotation') || 0 // 0 - 6.28
     }),
     text: new ol.style.Text({
-      font: '12px Calibri,sans-serif',
+      font: '10px Calibri,sans-serif',
       textAlign: 'center',
       fill: new ol.style.Fill({ color: 'rgba(255,255,255,0.9)' }),
       text: this.get('_label') || '' ,
@@ -377,7 +377,7 @@ const playerStyleFunc = function (feature) {
   var iconStyle = new ol.style.Style({
     image: new ol.style.Icon({
       img: this.get('_friend') ? friendSvgImg : playerSvgImg,
-      imgSize: [16, 16],
+      imgSize: [13, 13],
       scale: 1,
       rotation: this.get('_rotation') || 0, // 0 - 6.28,
     }),
@@ -385,7 +385,7 @@ const playerStyleFunc = function (feature) {
       font: '12px Calibri,sans-serif',
       textAlign: 'center',
       fill: new ol.style.Fill({ color: 'rgba(255,255,255,1)' }),
-      text: this.get('_label') || '' ,
+      text: '' ,
       offsetY: 15
     })
   })
@@ -497,12 +497,12 @@ const itemStyleFunc = function (feature) {
       stroke: new ol.style.Stroke({color: 'rgba(0,0,255,0.8)', width: 1.5 })
     }),
     text: new ol.style.Text({
-      font: 'bold 14px Calibri,sans-serif',
+      font: '10px Calibri,sans-serif',
       textAlign: 'center',
       fill: new ol.style.Fill({ color: 'rgba(239,108,0,1)' }),
       text: this.get('_label') || '' ,
       offsetY: 12,
-      stroke: new ol.style.Stroke({color: 'rgba(255,255,255,1)', width: 2.5 })
+      stroke: new ol.style.Stroke({color: 'rgba(255,255,255,1)', width: 1.5 })
     })
   })
   return [style]
@@ -667,7 +667,7 @@ const renderMap = () => {
         feature.set('_friend', true)
       }
       if (playerObj.name) {
-        label = playerObj.name.substring(0, 6) // make it shorter
+        // label = playerObj.name.substring(0, 6) // make it shorter
       }
       // calculate the aim line, for 512 units (500m)
       const radianAngle = loc[3] / 180 * Math.PI
@@ -677,19 +677,19 @@ const renderMap = () => {
         )
       )
     } else { // enemy
-      if (playerObj.team) {
-        label = `${playerObj.team}`
-      } else if (playerObj.name) {
-        label = playerObj.name
-      } else {
-        label = `<${playerObj.name}>`
-      }
-      if (playerObj.kills) {
-        label += ` |杀:${playerObj.kills}|`
-      }
+      // if (playerObj.team) {
+      //   label = `${playerObj.team}`
+      // } else if (playerObj.name) {
+      //   label = playerObj.name
+      // } else {
+      //   label = `<${playerObj.name}>`
+      // }
+      // if (playerObj.kills) {
+      //   label += ` |杀:${playerObj.kills}|`
+      // }
     }
     if (playerObj.health != null) {
-      label += ` |血:${Math.floor(playerObj.health)}|`
+      // label += ` |血:${Math.floor(playerObj.health)}|`
     }
     feature.set('_label', label)
     // re-add should be fine

@@ -313,13 +313,17 @@ const gameState = {
             // otherwise, will have stale displaying players
             this.showingPlayers.delete(event.guid)
           }
+          // if (event.data.team){
+          //   player.team = event.data.team
+          // }
+          if (event.data.health) {
+            player.health = event.data.health
+          }
           if (event.data.newLoc && event.data.newLoc[0] >= 0 && event.data.newLoc[1] >= 0) {
             player.loc = event.data.newLoc
             this.showingPlayers.set(event.guid, player)
           }
-          if (event.data.health) {
-            player.health = event.data.health
-          }
+
           if (event.data.pToPS) {
             this.playerStateToPlayerMap.set(event.data.pToPS, event.guid)
             // maybe PS already exists, so sync the data
