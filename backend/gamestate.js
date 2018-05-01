@@ -313,8 +313,11 @@ const gameState = {
             // otherwise, will have stale displaying players
             this.showingPlayers.delete(event.guid)
           }
-          if (event.data.team){
-            player.team = event.data.team
+          if (event.data.teamNumber){
+            player.teamNumber = event.data.teamNumber
+          }
+          if (event.data.playerName){
+            player.playerName = event.data.playerName
           }
           if (event.data.health) {
             player.health = event.data.health

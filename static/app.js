@@ -15,6 +15,7 @@ const appData = {
 
   showingItems: new Map(), // itemguid -> obj { loc: name: FT:}
   itemFeatures: new Map(), // itemguid -> olFeature
+  teamMembers: new Map(), // itemguid -> olFeature
 }
 
 // vue app just for html map option control
@@ -827,6 +828,7 @@ const updatePlayerLocs = () => {
 
       appData.showingPlayers.clear()
       appData.playerFeatures.clear()
+      appData.teamMembers.clear()
 
       appData.showingAPawns.clear()
       appData.apawnFeatures.clear()
@@ -843,6 +845,9 @@ const updatePlayerLocs = () => {
     }
     if (res.data.meGuid) {
       appData.meGuid = res.data.meGuid
+    }
+    if (res.data.teamMembers){
+      appData.teamMembers = new Map([...res.data.teamMembers])
     }
     if (res.data.displayPlayers) { // [ [guid, player], [guid, player], [guid, player]]
       appData.showingPlayers = new Map([...res.data.displayPlayers])
